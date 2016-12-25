@@ -1,5 +1,5 @@
-import stubdata from '../stubdata';
 import _ from 'lodash';
+import stubdata from '../stubdata';
 
 const defaultState = {
   selected: [],
@@ -35,7 +35,7 @@ const searchReducer = (state = defaultState, action) => {
       const filter = new RegExp('^'+action.userInput, 'i');
       const filteredNames = _.filter(stubdata, (item) =>
         filter.test(item.name)  // || filter.test(state.id);
-      ).filter((item) =>
+      ).filter(item =>
           _.map(state.selected, filteredItem => filteredItem.name)
           .indexOf(item.name) === -1)
       return {
@@ -47,5 +47,5 @@ const searchReducer = (state = defaultState, action) => {
     default:
       return state;
   }
-}
+};
 export default searchReducer;

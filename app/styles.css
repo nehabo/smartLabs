@@ -7,6 +7,11 @@ body {
   margin: auto;
 }
 
+.cart {
+  border-width: thick;
+  border-color: black;
+}
+
 .ic-tokeninput {
   display: inline-block;
 }
@@ -16,7 +21,11 @@ body {
   text-align: center;
 }
 
-ul {
+li {
+  text-decoration: none;
+}
+
+ol {
   text-align: left;
 }
 

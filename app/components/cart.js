@@ -4,16 +4,18 @@ import _ from 'lodash';
 export default (props) => {
   let cost = 0;
   return (
-    <div>
+    <div className="cart">
       <h2>Selected Reports</h2>
-      <ul>
+      <ol>
         {
-          _.map(props.selected, tag => {
-            cost = cost + tag.cost;
-            return <li key={tag.id}>Name: {tag.name}, Id: {tag.id}, ReportId: {tag.reportId}, status: {tag.status}  COST: {tag.cost}</li>;
+          _.map(props.selected, (tag) => {
+            cost += tag.cost;
+            return (<li key={tag.id}>
+              {tag.name} &nbsp; Price: {tag.cost}
+            </li>);
           })
         }
-      </ul>
+      </ol>
       <h4>Total Cost <b>{cost}</b></h4>
     </div>
   );
