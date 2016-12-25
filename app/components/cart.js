@@ -17,6 +17,7 @@ export default (props) => {
         }
       </ol>
       <h4>Total Cost <b>{cost}</b></h4>
+      <div className="btn-warning">Checkout</div>
     </div>
   );
 };
