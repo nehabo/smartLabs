@@ -1,16 +1,9 @@
 import { connect } from 'react-redux';
-import * as searchactions from '../actions/'
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux';
+import * as searchactions from '../actions/';
 import search from '../components/search';
 
-function mapStateToProps(state) {
-  return {
-    ...state.searchReducer,
-  };
-}
+const mapStateToProps = state => ({ ...state.searchReducer });
+const mapDispatchToProps = dispatch => bindActionCreators(searchactions, dispatch);
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(searchactions, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(search)
+export default connect(mapStateToProps, mapDispatchToProps)(search);

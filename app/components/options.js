@@ -1,10 +1,10 @@
 import React from 'react';
 import _ from 'lodash';
 
-export default (props) =>
+export default props =>
   <div>
     {
       _.map(props.options, item =>
-      <button onClick={ ()=> props.handleSelect(item) } key={item.id}>{item.name}</button>)
+        <div className="btn btn-info" onClick={() => props.handleSelect(item)} key={item.id}>{item.name}</div>)
     }
   </div>;
