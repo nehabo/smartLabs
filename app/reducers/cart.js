@@ -1,15 +1,9 @@
 import _ from 'lodash';
-import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete';
 import stubdata from '../stubdata';
 
 const defaultState = {
   selected: [],
   options: stubdata,
-  address: 'San Francisco, CA',
-  location: {
-    lat: null,
-    lng: null,
-  },
 };
 
 const searchReducer = (state = defaultState, action) => {
@@ -50,25 +44,8 @@ const searchReducer = (state = defaultState, action) => {
       };
       break;
 
-    // case 'HANDLE_FORM_SUBMIT':
-    //   event.preventDefault();
-    //   const { address } = this.state;
-    //   geocodeByAddress(address, (err, { lat, lng }) => {
-    //     if (err) {
-    //       console.log('error', err);
-    //     }
-    //
-    //     console.log(`latitude and longitude for ${address}`, { lat, lng });
-    //     const location = ()
-    //   });
-    //   return {
-    //     ...state,
-    //     location,
-    //   };
-    //   break;
-
     default:
       return state;
   }
 };
-export default searchReducer;
+export default cartReducer;
