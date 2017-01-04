@@ -39,6 +39,10 @@ class Map extends React.Component {
     this.state = {
       address: '',
       markers: null,
+      location: {
+        lat: null,
+        lng: null,
+      },
     };
 
     this.handleMarkerClick = this.handleMarkerClick.bind(this);
@@ -109,8 +113,13 @@ class Map extends React.Component {
         key: Date.now(), // Add a key property for: http://fb.me/react-warning-keys
       },
     ];
+    console.log(event.latLng.lng());
     this.setState({
       markers: nextMarkers,
+      location: {
+        lat: event.latLng.lat(),
+        lng: event.latLng.lng(),
+      }
     });
   }
 
@@ -156,11 +165,8 @@ class Map extends React.Component {
   }
 
   render() {
-    const { isScriptLoaded, isScriptLoadSucceed } = this.props;
-
     return (
       <div style={{ height: 500 }}>
-        <span> Map Testing </span>
         <div><PopUpInfoWindowExampleGoogleMap
 
           containerElement={

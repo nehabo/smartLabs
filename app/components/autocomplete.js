@@ -5,7 +5,7 @@ class AutoCompleteForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      address: 'San Francisco, CA',
+      address: '',
       location: {
         lat: null,
         lng: null,
@@ -33,6 +33,7 @@ class AutoCompleteForm extends React.Component {
         <PlacesAutocomplete
           value={this.state.address}
           onChange={this.onChange}
+          placeholder="Enter your Address"
         />
         <button type="submit">Submit</button>
       </form>

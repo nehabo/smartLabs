@@ -14,6 +14,7 @@ class Address extends React.Component{
       },
     };
     this.onSubmit = this.onSubmit.bind(this);
+    this.onHandleLocate = this.onHandleLocate.bind(this);
   }
 
   onSubmit(location) {
@@ -22,9 +23,23 @@ class Address extends React.Component{
     });
   }
 
+  onHandleLocate(coords) {
+    const lat = coords.latitude;
+    const lng = coords.longitude;
+    this.setState({
+      location: {
+        lat,
+        lng,
+      },
+    });
+  }
+
   render() {
     return (
       <div>
+        <Demo
+          onClick={this.onHandleLocate}
+        />
         <AutoCompleteForm
           onSubmit={this.onSubmit}
         />
