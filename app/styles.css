@@ -29,6 +29,10 @@ ol {
   text-align: left;
 }
 
+.table th {
+  text-align: center;
+}
+
 #application {
   width: 600px;
   margin: auto;

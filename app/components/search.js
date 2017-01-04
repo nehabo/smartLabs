@@ -4,6 +4,7 @@ import { Option } from 'react-tokeninput';
 import _ from 'lodash';
 import Cart from './cart';
 import Options from './options';
+import Address from './Address';
 
 require('../styles.css');
 
@@ -31,8 +32,10 @@ class Search extends React.Component {
         />
         <Options handleSelect={this.props.handleSelect} options={this.props.options || []} />
         <Cart selected={this.props.selected} />
+        <Address />
       </div>
     );
-  }}
+  }
+}
 
 export default Search;
