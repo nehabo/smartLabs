@@ -1,9 +1,9 @@
 import React from 'react';
-import TokenInput from 'react-tokeninput';
-import { Option } from 'react-tokeninput';
+import TokenInput, { Option } from 'react-tokeninput';
 import _ from 'lodash';
 import Cart from './cart';
 import Options from './options';
+
 require('../styles.css');
 
 class Search extends React.Component {
@@ -41,6 +41,7 @@ class Search extends React.Component {
         <Options handleSelect={this.props.handleSelect} options={this.props.options || []} />
         <Cart selected={this.props.selected} />
       </div>
+
     );
   }}
 

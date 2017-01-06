@@ -1,5 +1,5 @@
-import stubdata from '../stubdata';
 import _ from 'lodash';
+import stubdata from '../stubdata';
 
 const defaultState = {
   selected: [],
