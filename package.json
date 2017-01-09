@@ -39,7 +39,7 @@
     "react-bootstrap": "^0.30.7",
     "react-dom": "^15.3.2",
     "react-geolocated": "^1.0.1",
-    "react-google-maps": "^4.11.0",
+    "react-google-maps": "^6.0.0",
     "react-places-autocomplete": "^2.6.0",
     "react-redux": "^5.0.1",
     "react-select": "^1.0.0-rc.2",

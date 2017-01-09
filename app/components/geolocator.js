@@ -2,10 +2,12 @@ import React from 'react';
 import { geolocated } from 'react-geolocated';
 
 class LocateMe extends React.Component {
+
   handleClick(event) {
     event.preventDefault();
     const coords = this.props.coords;
-    this.props.onLocate(coords);
+    console.log(coords);
+    this.props.onClick(coords);
   }
 
   render() {
