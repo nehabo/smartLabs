@@ -1,4 +1,3 @@
-
 import { geocodeByAddress } from 'react-places-autocomplete';
 
 // Search Function Actions
@@ -29,30 +28,43 @@ export const onChange = address => ({
   address,
 });
 
-const getLocation = (address) => {
-  console.log(address);
-  geocodeByAddress(address, (err, { lat, lng }) => {
-    if (err) {
-      console.log('Oh no!', err)
-    }
-    console.log(`Yay! got latitude and longitude for ${address}`, { lat, lng })
-    return { lat, lng };
-  })
-};
+// onselect method of autocomplete
+export const onSelect = address => ({
+  type: 'ON_SELECT',
+  address,
+});
 
-// submit autocomplete form
-export const handleFormSubmit = (address) => {
-  const location = getLocation(address).then(
-    (({ lat, lng}) => { location = { lat, lng } });
-  );
-  return ({
-    type: 'HANDLE_FORMSUBMIT',
-    location,
-  });
-};
+export const geocodeSuccess = (lat, lng) => ({
+  type: 'ON_GEOCODESUCCESS',
+  lat,
+  lng,
+});
+
+export const getAddress = results => ({
+  type: 'GET_ADDRESS',
+  results,
+});
 
 // when map clicked
 export const handleClick = nextMarkers => ({
   type: 'HANDLE_CLICK',
   nextMarkers,
+});
+
+// when form street input changed
+export const handleStreetInput = street => ({
+  type: 'HANDLE_STREETINPUT',
+  street,
+});
+
+// when form locality input changed
+export const handleLocalityInput = locality => ({
+  type: 'HANDLE_LOCALITYINPUT',
+  locality,
+});
+
+// when form postal code input changed
+export const handlePostalInput = pincode => ({
+  type: 'HANDLE_POSTALINPUT',
+  pincode,
 });
