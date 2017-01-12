@@ -36,6 +36,7 @@
     "bootstrap": "^3.3.7",
     "lodash": "^4.17.2",
     "react": "^15.3.2",
+    "react-async-script-loader": "^0.2.2",
     "react-bootstrap": "^0.30.7",
     "react-dom": "^15.3.2",
     "react-geolocated": "^1.0.1",

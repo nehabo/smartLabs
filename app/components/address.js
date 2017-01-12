@@ -1,6 +1,8 @@
 import React from 'react';
 import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete';
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
+import withScriptjs from "react-google-maps/lib/async/withScriptjs";
+import scriptLoader from 'react-async-script-loader';
 import { Panel, PanelGroup, Accordion } from 'react-bootstrap';
 import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 import AddressForm from './addressForm';
@@ -8,20 +10,24 @@ import LocateMe from './geolocator';
 
 require('../styles.css');
 
-const PopUpMap = withGoogleMap(props => (
-  <GoogleMap
-    ref={props.onMapLoad}
-    defaultZoom={13}
-    center={props.location}
-    onClick={props.onMapClick}
-  >
-  {props.markers.map(marker => (
+const PopUpMap = withScriptjs(
+  withGoogleMap(
+    props => (
+    <GoogleMap
+      ref={props.onMapLoad}
+      defaultZoom={13}
+      center={props.location}
+      onClick={props.onMapClick}
+    >
+      {props.markers.map(marker => (
       <Marker
         {...marker}
       />
-    ))}
-  </GoogleMap>
-));
+      ))}
+    </GoogleMap>
+  ),
+ )
+);
 
 class Address extends React.Component {
   constructor(props) {
@@ -210,6 +216,12 @@ class Address extends React.Component {
             />
             <div style={{ height: '350px', width: '1000px' }}>
               <PopUpMap
+              googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdw3Ay8F62tQhxudkF_nc-BKjL4HgYbwQ&libraries=places"
+              loadingElement={
+                <div style={{ height: '100%' }}>
+                
+                </div>
+                }
                 containerElement={
                   <div style={{ height: '300px', width: '1000px' }} />
                 }
