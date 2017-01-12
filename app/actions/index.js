@@ -68,3 +68,8 @@ export const handlePostalInput = pincode => ({
   type: 'HANDLE_POSTALINPUT',
   pincode,
 });
+
+// handles form submission
+export const handleFormSubmit = () => ({
+  type: 'HANDLE_FORMSUBMIT',
+});

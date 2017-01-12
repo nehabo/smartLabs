@@ -1,6 +1,8 @@
 import React from 'react';
 import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete';
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
+import { Panel, PanelGroup, Accordion } from 'react-bootstrap';
+import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 import AddressForm from './addressForm';
 import LocateMe from './geolocator';
 
@@ -28,6 +30,7 @@ class Address extends React.Component {
       geocodeResults: null,
       loading: false,
       reverseGeocodeResults: null,
+      eventKey: 1,
     };
 
     this.onChange = address => {
@@ -50,13 +53,25 @@ class Address extends React.Component {
     this.handleMapLoad = this.handleMapLoad.bind(this);
     this.onAutoSuggestSubmit = this.onAutoSuggestSubmit.bind(this);
     this.onSelect = this.onSelect.bind(this);
+    this.handleOnLocate = this.handleOnLocate.bind(this);
     this.geocodeFailure = this.geocodeFailure.bind(this);
     this.geocodeSuccess = this.geocodeSuccess.bind(this);
     this.reverseGeocodeSuccess = this.reverseGeocodeSuccess.bind(this);
+    this.handlePanel = this.handlePanel.bind(this);
+  }
+
+  handlePanel(eventKey) {
+    this.setState({
+      eventKey,
+    });
+    console.log(eventKey);
   }
 
   handleMapLoad(map) {
-    this._mapComponent = map;
+    if (this.state.eventKey === 2) {
+      console.log(this.state.eventKey);
+      this._mapComponent = map;
+    }
   }
 
   handleMapClick(event) {
@@ -109,12 +124,56 @@ class Address extends React.Component {
     });
   }
 
+  handleOnLocate(coords) {
+    console.log(coords);
+    this.props.onLocate(coords);
+    const location = {
+      lat: coords.latitude,
+      lng: coords.longitude,
+    };
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ 'location': location }, (results, status) => {
+      if (status === 'OK') {
+        if (results[0]) {
+          console.log(results[0].formatted_address);
+          this.setState({
+            reverseGeocodeResults: this.reverseGeocodeSuccess(results),
+          });
+        } else {
+          console.log('No results found');
+        }
+      } else {
+        console.log('Geocoder failed due to: ' + status);
+      }
+      return results[0];
+    });
+  }
+
   geocodeFailure(err) {
     console.log('Not able to get location', err);
   }
 
   geocodeSuccess(lat, lng) {
+    // updates location in state
     this.props.geocodeSuccess(lat, lng);
+
+    // gets formatted address to populate form fields
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ 'location': { lat, lng } }, (results, status) => {
+      if (status === 'OK') {
+        if (results[0]) {
+          console.log(results[0].formatted_address);
+          this.setState({
+            reverseGeocodeResults: this.reverseGeocodeSuccess(results),
+          });
+        } else {
+          console.log('No results found');
+        }
+      } else {
+        console.log('Geocoder failed due to: ' + status);
+      }
+      return results[0];
+    });
   }
 
   reverseGeocodeSuccess(results) {
@@ -134,41 +193,51 @@ class Address extends React.Component {
   render() {
     const AutocompleteItem = ({ suggestion }) =>
     (<div><i className="fa fa-map-marker suggestion" />{suggestion}</div>);
+
     return (
       <div>
-          <PlacesAutocomplete
-            value={this.props.address}
-            onChange={this.onChange}
-            onSelect={this.onSelect}
-            location={this.props.location}
-            autocompleteItem={AutocompleteItem}
-          />
-        <LocateMe
-          onClick={this.props.onLocate}
-        />
-        <div style={{height: '350px'}}>
-          <PopUpMap
-            containerElement={
-              <div style={{ height: '300px' }} />
-            }
-            mapElement={
-              <div style={{ height: '300px' }} />
-            }
-            onMapLoad={this.handleMapLoad}
-            location={this.props.location}
-            onMapClick={event => this.handleMapClick(event)}
-            markers={this.props.markers}
-          />
-        </div>
-        <AddressForm
-          streetAddress={this.props.streetAddress}
-          locality={this.props.locality}
-          city={this.props.city}
-          postalCode={this.props.postalCode}
-          handleInputStreet={this.handleStreetInput}
-          handleInputLocality={this.handleLocalityInput}
-          handleInputPostal={this.handlePostalInput}
-        />
+        <Accordion>
+          <Panel header="Address Details" onSelect={this.handlePanel} eventKey="2">
+            <PlacesAutocomplete
+              value={this.props.address}
+              onChange={this.onChange}
+              onSelect={this.onSelect}
+              location={this.props.location}
+              autocompleteItem={AutocompleteItem}
+            />
+            <LocateMe
+              onClick={this.handleOnLocate}
+            />
+            <div style={{ height: '350px', width: '1000px' }}>
+              <PopUpMap
+                containerElement={
+                  <div style={{ height: '300px', width: '1000px' }} />
+                }
+                mapElement={
+                  <div style={{ height: '300px', width: '980px' }} />
+                }
+                onMapLoad={this.handleMapLoad}
+                location={this.props.location}
+                onMapClick={event => this.handleMapClick(event)}
+                markers={this.props.markers}
+              />
+            </div>
+            <AddressForm
+              streetAddress={this.props.streetAddress}
+              locality={this.props.locality}
+              city={this.props.city}
+              district={this.props.district}
+              _state={this.props._state}
+              postalCode={this.props.postalCode}
+              handleInputStreet={this.handleStreetInput}
+              handleInputLocality={this.handleLocalityInput}
+              handleInputPostal={this.handlePostalInput}
+            />
+          </Panel>
+          <Panel header="Personal Details" eventKey="3">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably havent heard of them accusamus labore sustainable VHS.
+          </Panel>
+        </Accordion>
       </div>
     );
   }

@@ -5,7 +5,6 @@ import { createStore } from 'redux';
 import Search from './containers/search';
 import Address from './containers/address';
 import reducers from './reducers/';
-import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 
 const store = createStore(reducers);
 const App = (

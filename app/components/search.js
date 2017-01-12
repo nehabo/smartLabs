@@ -1,6 +1,7 @@
 import React from 'react';
 import TokenInput, { Option } from 'react-tokeninput';
 import _ from 'lodash';
+import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 import Cart from './cart';
 import Options from './options';
 
@@ -24,7 +25,7 @@ class Search extends React.Component {
       this.renderComboboxOptions() : [];
 
     return (
-      <div>
+      <div className="container">
         <h1>Bill your Medical Reports</h1>
 
         <TokenInput
