@@ -16,6 +16,11 @@ export const handleInput = userInput => ({
   userInput,
 });
 
+export const handleCheckout = items => ({
+  type: 'HANDLE_CHECKOUT',
+  items,
+});
+
 // Locate Me Button
 export const onLocate = coords => ({
   type: 'ON_LOCATE',
@@ -69,7 +74,14 @@ export const handlePostalInput = pincode => ({
   pincode,
 });
 
-// handles form submission
-export const handleFormSubmit = () => ({
+// handles Address form submission
+export const handleFormSubmit = values => ({
   type: 'HANDLE_FORMSUBMIT',
+  values,
+});
+
+// handles Patient submission
+export const handlePatientSubmit = values => ({
+  type: 'HANDLE_PATIENTSUBMIT',
+  values,
 });

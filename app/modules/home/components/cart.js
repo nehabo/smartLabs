@@ -1,11 +1,12 @@
 import React from 'react';
 import _ from 'lodash';
+import Button from '../../common/components/input/button';
 
 export default (props) => {
   let cost = 0;
   return (
     <div className="cart">
-      <h2>Selected Reports</h2>
+      <h2>Diagnostics Selected</h2>
       <table className="table">
         <thead>
           <tr>
@@ -22,15 +23,14 @@ export default (props) => {
                 <td key={tag.id}>
                   {tag.name}
                 </td>
-                <td>{tag.cost}</td>
+                <td>Rs. {tag.cost}</td>
               </tr>);
             })
           }
         </tbody>
 
       </table>
-      <h4>Total Cost <b>{cost}</b></h4>
-      <div className="btn-warning" onClick={() => props.handleSubmit(items)}>Checkout</div>
+      <h4>TOTAL <b>Rs. {cost}</b></h4>
     </div>
   );
 };

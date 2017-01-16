@@ -1,13 +1,33 @@
 import React from 'react';
 import TokenInput, { Option } from 'react-tokeninput';
 import _ from 'lodash';
-import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 import Cart from './cart';
 import Options from './options';
 
 require('../styles.css');
 
 class Search extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onClick = this.onClick.bind(this);
+    this.state = {
+      className: 'min-cart',
+    };
+  }
+
+  onClick(event) {
+    if (this.state.className === 'min-cart') {
+      console.log("className is min-cart");
+      this.setState({
+        className: 'cart',
+      });
+    } else {
+      console.log('className is cart');
+      this.setState({
+        className: 'min-cart',
+      })
+    }
+  }
 
   renderComboboxOptions() {
     return _.map(this.props.options, name =>
@@ -25,9 +45,7 @@ class Search extends React.Component {
       this.renderComboboxOptions() : [];
 
     return (
-      <div className="container">
-        <h1>Bill your Medical Reports</h1>
-
+      <div className={this.state.className}>
         <TokenInput
           menuContent={options}
           onInput={this.props.handleInput}
@@ -38,8 +56,8 @@ class Search extends React.Component {
         />
         <Options handleSelect={this.props.handleSelect} options={this.props.options || []} />
         <Cart selected={this.props.selected} />
+        <button onClick={this.onClick}>Purchase</button>
       </div>
-
     );
   }
 }

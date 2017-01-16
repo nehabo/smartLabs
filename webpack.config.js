@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
 // entry point(s) for app
   entry: [

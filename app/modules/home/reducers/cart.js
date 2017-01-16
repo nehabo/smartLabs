@@ -3,13 +3,13 @@ import _ from 'lodash';
 const defaultState = {
   address: '',
   location: {
-    lat: 17.401522099999998,
-    lng: 78.4600679,
+    lat: 17.3920228,
+    lng: 78.3444593,
   },
   markers: [{
     position: {
-      lat: 17.401522099999998,
-      lng: 78.4600679,
+      lat: 17.3920228,
+      lng: 78.3444593,
     },
     key: 'India',
     defaultAnimation: 2,
@@ -103,7 +103,7 @@ const cartReducer = (state = defaultState, action) => {
           if (_.result(Object, 'address_components[0].short_name') === 'Unnamed Road') {
             streetAddress = '';
           } else {
-          streetAddress = streetAddress + ' ' + _.result(Object, 'address_components[0].short_name') + ' ' + _.result(Object, 'address_components[1].short_name');
+          streetAddress = streetAddress + ' ' + _.result(Object, 'address_components[0].short_name');
           }
         } else if ((_.includes(Object.types, 'sublocality_level_1'))
                   || (_.includes(Object.types, 'sublocality_level_2'))) {
@@ -161,6 +161,7 @@ const cartReducer = (state = defaultState, action) => {
       break;
 
     case 'HANDLE_FORMSUBMIT':
+      console.log(action.values);
       return {
         ...state,
       }

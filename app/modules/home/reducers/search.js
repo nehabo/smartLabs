@@ -1,9 +1,10 @@
 import _ from 'lodash';
-import stubdata from '../stubdata';
+import stubdata from '../../../config/stubdata';
 
 const defaultState = {
   selected: [],
   options: stubdata,
+  items: [],
 };
 
 const searchReducer = (state = defaultState, action) => {
@@ -43,6 +44,14 @@ const searchReducer = (state = defaultState, action) => {
         options: filteredNames,
       };
       break;
+
+      case 'HANDLE_CHECKOUT':
+      console.log(action.items);
+        return {
+          ...state,
+          items: action.items,
+        };
+        break;
 
     default:
       return state;

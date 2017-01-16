@@ -5,6 +5,6 @@ export default (props) =>
   <div>
     {
       _.map(props.options, item =>
-      <button onClick={ ()=> props.handleSelect(item) } key={item.id}>{item.name}</button>)
+      <button className="optionButtons" onClick={ ()=> props.handleSelect(item) } key={item.id}>{item.name}</button>)
     }
   </div>;

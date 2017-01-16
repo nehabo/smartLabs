@@ -1,5 +1,6 @@
 body {
   background-color: #fff;
+  margin: 0;
   text-align: center;
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
@@ -7,25 +8,89 @@ body {
   height: 100%;
   overflow-x: hidden;
   text-align: center;
+  font-family: 'Ariel', sans-serif;
 }
 
-#application {
-  /*width: 600px;*/
-  margin: auto;
+.autocomplete {
+  z-index: 1;
+  position: absolute;
+  right:500px;
+  background-color: white;
+  -webkit-box-shadow: 1px 3px 2px 2px rgba(92,90,92,0.6);
+  -moz-box-shadow: 1px 3px 2px 2px rgba(92,90,92,0.6);
+  box-shadow: 1px 3px 2px 2px rgba(92,90,92,0.6);
 }
 
-.form-control {
-  margin-bottom: 10px;
+.order Button {
+  margin-top: 20px;
+  background-color: #4E71F8;
+  color: white;
+  border: none;
+  padding: 10px 50px 10px 50px;
+}
+
+.addressform {
+  z-index: 1;
+  position: absolute;
+  top: 200px;
+}
+
+.map {
+  position: relative;
+  padding: 0;
+}
+
+.nav {
+  background-color: #3C52C9;
+  height: 60px;
+  text-align: left;
+  color: white;
+}
+
+.textInput {
+  margin-bottom: 5px;
+  border: none;
+  -webkit-box-shadow: 1px 4px 9px 0px rgba(69,68,69,0.84);
+  -moz-box-shadow: 1px 4px 9px 0px rgba(69,68,69,0.84);
+  box-shadow: 1px 4px 9px 0px rgba(69,68,69,0.84);
+}
+
+.patient Button {
+  margin-top: 20px;
+  background-color: #4E71F8;
+  color: white;
+  border: none;
+  padding: 10px 50px 10px 50px;
+}
+
+.optionButtons {
+  border: 1px solid #C1C7CF;
+  background-color: #F5F7F8;
+  color: #7C8E9A;
+  border-radius: 3px;
+}
+
+.cart {
+  background-color: #4E71F8;
+  color: white;
+}
+
+.min-cart {
+  background-color: #4E71F8;
+  color: red;
+}
+
+.col-xs-3 {
+  padding-right: 0;
+}
+
+.col-xs-9 {
+  padding-left: 0;
+  padding-bottom: 0;
 }
 
 .ic-tokeninput {
   display: inline-block;
-}
-
-
-.cart {
-  border-width: thick;
-  border-color: black;
 }
 
 .ic-tokeninput {
@@ -42,12 +107,6 @@ ol {
 
 .table th {
   text-align: center;
-}
-
-#application {
-  /*width: 600px;*/
-  margin: auto;
-  padding: 100px 0px;
 }
 
 .ic-tokeninput-list {
@@ -103,7 +162,8 @@ ol {
   outline: none;
   top: 2px;
   right: 6px;
-  font-size: 14px;
+  border: none;
+  font-size: 8px;
   cursor: default;
 }
 
@@ -169,6 +229,8 @@ ol {
   will-change: transform;
   flex-wrap: wrap;
   min-height: 41px;
+  margin: 0;
+  color: black;
 }
 
 .ic-tokens-disabled {
@@ -242,7 +304,7 @@ ol {
   color: #e53935;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 880px) {
   .autocomplete-container {
     text-align: left;
   }

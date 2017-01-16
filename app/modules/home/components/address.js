@@ -1,21 +1,16 @@
 import React from 'react';
 import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete';
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
-import withScriptjs from "react-google-maps/lib/async/withScriptjs";
-import scriptLoader from 'react-async-script-loader';
-import { Panel, PanelGroup, Accordion } from 'react-bootstrap';
-import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 import AddressForm from './addressForm';
 import LocateMe from './geolocator';
 
 require('../styles.css');
 
-const PopUpMap = withScriptjs(
-  withGoogleMap(
+const PopUpMap = withGoogleMap(
     props => (
     <GoogleMap
       ref={props.onMapLoad}
-      defaultZoom={13}
+      defaultZoom={16}
       center={props.location}
       onClick={props.onMapClick}
     >
@@ -26,7 +21,6 @@ const PopUpMap = withScriptjs(
       ))}
     </GoogleMap>
   ),
- )
 );
 
 class Address extends React.Component {
@@ -36,7 +30,6 @@ class Address extends React.Component {
       geocodeResults: null,
       loading: false,
       reverseGeocodeResults: null,
-      eventKey: 1,
     };
 
     this.onChange = address => {
@@ -63,21 +56,10 @@ class Address extends React.Component {
     this.geocodeFailure = this.geocodeFailure.bind(this);
     this.geocodeSuccess = this.geocodeSuccess.bind(this);
     this.reverseGeocodeSuccess = this.reverseGeocodeSuccess.bind(this);
-    this.handlePanel = this.handlePanel.bind(this);
-  }
-
-  handlePanel(eventKey) {
-    this.setState({
-      eventKey,
-    });
-    console.log(eventKey);
   }
 
   handleMapLoad(map) {
-    if (this.state.eventKey === 2) {
-      console.log(this.state.eventKey);
-      this._mapComponent = map;
-    }
+    this._mapComponent = map;
   }
 
   handleMapClick(event) {
@@ -202,38 +184,33 @@ class Address extends React.Component {
 
     return (
       <div>
-        <Accordion>
-          <Panel header="Address Details" onSelect={this.handlePanel} eventKey="2">
-            <PlacesAutocomplete
-              value={this.props.address}
-              onChange={this.onChange}
-              onSelect={this.onSelect}
+        <div className="autocomplete">
+          <PlacesAutocomplete
+            value={this.props.address}
+            onChange={this.onChange}
+            onSelect={this.onSelect}
+            location={this.props.location}
+            autocompleteItem={AutocompleteItem}
+          />
+          <LocateMe
+            onClick={this.handleOnLocate}
+          />
+        </div>
+          <div className="map" style={{ height: '300px', width: '1000px' }}>
+            <PopUpMap
+              containerElement={
+                <div style={{ height: '300px', width: '1000px', align: 'center' }} />
+              }
+              mapElement={
+                <div style={{ height: '300px', width: '980px', align: 'center' }} />
+              }
+              onMapLoad={this.handleMapLoad}
               location={this.props.location}
-              autocompleteItem={AutocompleteItem}
+              onMapClick={event => this.handleMapClick(event)}
+              markers={this.props.markers}
             />
-            <LocateMe
-              onClick={this.handleOnLocate}
-            />
-            <div style={{ height: '350px', width: '1000px' }}>
-              <PopUpMap
-              googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdw3Ay8F62tQhxudkF_nc-BKjL4HgYbwQ&libraries=places"
-              loadingElement={
-                <div style={{ height: '100%' }}>
-                
-                </div>
-                }
-                containerElement={
-                  <div style={{ height: '300px', width: '1000px' }} />
-                }
-                mapElement={
-                  <div style={{ height: '300px', width: '980px' }} />
-                }
-                onMapLoad={this.handleMapLoad}
-                location={this.props.location}
-                onMapClick={event => this.handleMapClick(event)}
-                markers={this.props.markers}
-              />
-            </div>
+          </div>
+          <div className="addressform">
             <AddressForm
               streetAddress={this.props.streetAddress}
               locality={this.props.locality}
@@ -244,12 +221,9 @@ class Address extends React.Component {
               handleInputStreet={this.handleStreetInput}
               handleInputLocality={this.handleLocalityInput}
               handleInputPostal={this.handlePostalInput}
+              handleFormSubmit={this.props.handleFormSubmit}
             />
-          </Panel>
-          <Panel header="Personal Details" eventKey="3">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably havent heard of them accusamus labore sustainable VHS.
-          </Panel>
-        </Accordion>
+          </div>
       </div>
     );
   }
