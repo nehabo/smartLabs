@@ -75,9 +75,20 @@ body {
   color: white;
 }
 
+.cartTable table {
+  padding-left: 500px;
+}
+
+.cartTable td {
+  padding-right: 100px;
+}
+
+.cartTable th {
+  padding-right: 100px;
+}
+
 .min-cart {
   background-color: #4E71F8;
-  color: red;
 }
 
 .col-xs-3 {
@@ -101,8 +112,16 @@ li {
   text-decoration: none;
 }
 
+ul {
+  text-decoration: none;
+}
+
 ol {
   text-align: left;
+}
+
+a {
+  text-decoration: none;
 }
 
 .table th {

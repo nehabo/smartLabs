@@ -7,7 +7,7 @@ export default (props) => {
   return (
     <div className="cart">
       <h2>Diagnostics Selected</h2>
-      <table className="table">
+      <table>
         <thead>
           <tr>
             <th>Test</th>

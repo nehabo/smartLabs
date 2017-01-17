@@ -11,7 +11,12 @@ const patientReducer = (state = defaultState, action) => {
     case 'HANDLE_PATIENTSUBMIT':
       console.log(action.values);
       return {
-        state: action.values,
+        ...state,
+        name: action.values.name,
+        phone_no: action.values.phone,
+        dob: action.values.dob,
+        gender: action.values.gender,
+        email: action.values.email,
       };
       break;
 

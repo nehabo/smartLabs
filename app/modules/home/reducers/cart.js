@@ -3,13 +3,13 @@ import _ from 'lodash';
 const defaultState = {
   address: '',
   location: {
-    lat: 17.3920228,
-    lng: 78.3444593,
+    lat: 17.4015332,
+    lng: 78.460165,
   },
   markers: [{
     position: {
-      lat: 17.3920228,
-      lng: 78.3444593,
+      lat: 17.4015332,
+      lng: 78.460165,
     },
     key: 'India',
     defaultAnimation: 2,

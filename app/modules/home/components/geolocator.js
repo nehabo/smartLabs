@@ -13,7 +13,8 @@ class LocateMe extends React.Component {
 
   render() {
     return (
-      <a href="#" onClick={event => this.handleClick(event)}>Get your location</a>
+      <a href="#" className="glyphicon glyphicon-map-marker"
+        onClick={event => this.handleClick(event)}>Locate Me</a>
     );
   }
 }

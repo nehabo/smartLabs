@@ -25,6 +25,7 @@ class Radio extends React.Component {
               value={item.value}
               onChange={this.handleChange}
               name={this.props.name}
+              checked={this.props.checked}
             />
           </div>,
         )}

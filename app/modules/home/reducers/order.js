@@ -1,6 +1,8 @@
 const defaultState = {
   payment: '',
-  date: '',
+  exp_date: '',
+  card: null,
+  cvv: null,
 };
 
 const orderReducer = (state = defaultState, action) => {

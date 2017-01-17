@@ -30,6 +30,7 @@ class Address extends React.Component {
       geocodeResults: null,
       loading: false,
       reverseGeocodeResults: null,
+      step: 4,
     };
 
     this.onChange = address => {
@@ -56,6 +57,7 @@ class Address extends React.Component {
     this.geocodeFailure = this.geocodeFailure.bind(this);
     this.geocodeSuccess = this.geocodeSuccess.bind(this);
     this.reverseGeocodeSuccess = this.reverseGeocodeSuccess.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   handleMapLoad(map) {
@@ -174,6 +176,12 @@ class Address extends React.Component {
     this.props.handleFormSubmit(address);
   }
 
+  handleFormSubmit(values) {
+    const step = this.state.step;
+    this.props.handleFormSubmit(values);
+    this.props.onSubmit(step);
+  }
+
   handleClick(value) {
     this.props.handleInputChange(value);
   }
@@ -221,7 +229,7 @@ class Address extends React.Component {
               handleInputStreet={this.handleStreetInput}
               handleInputLocality={this.handleLocalityInput}
               handleInputPostal={this.handlePostalInput}
-              handleFormSubmit={this.props.handleFormSubmit}
+              onSubmit={this.handleFormSubmit}
             />
           </div>
       </div>
