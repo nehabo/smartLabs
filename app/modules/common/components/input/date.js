@@ -15,16 +15,15 @@ class Date extends React.Component {
     this.props.onChange(value);
   }
 
-  handleOnFocus(event) {
+  handleOnFocus() {
     this.type = 'date';
-
   }
 
   render() {
     return (
       <div>
         <input
-          className="textInput"
+          className="textInput form-control"
           value={this.props.getValue()}
           onFocus={this.handleOnFocus}
           type={this.type}

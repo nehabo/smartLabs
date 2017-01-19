@@ -4,7 +4,6 @@ import Search from '../containers/search';
 import Address from '../containers/address';
 import Patient from '../containers/patient';
 import Order from '../containers/order';
-import Nav from '../../../modules/common/components/nav/nav';
 
 class Index extends React.Component {
   constructor(props) {
@@ -41,7 +40,6 @@ class Index extends React.Component {
   render() {
     return (
       <div>
-        <Nav />
         {
           this.state.step === 1 ? <div><Search onSearch={this.handleClick} /></div> :
           this.state.step === 2 ?

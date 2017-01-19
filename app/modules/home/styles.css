@@ -1,5 +1,6 @@
+/* common */
 body {
-  background-color: #fff;
+  background-color: whitesmoke;
   margin: 0;
   text-align: center;
   font-weight: 300;
@@ -10,85 +11,27 @@ body {
   text-align: center;
   font-family: 'Ariel', sans-serif;
 }
-
-.autocomplete {
-  z-index: 1;
-  position: absolute;
-  right:500px;
-  background-color: white;
-  -webkit-box-shadow: 1px 3px 2px 2px rgba(92,90,92,0.6);
-  -moz-box-shadow: 1px 3px 2px 2px rgba(92,90,92,0.6);
-  box-shadow: 1px 3px 2px 2px rgba(92,90,92,0.6);
-}
-
-.order Button {
-  margin-top: 20px;
-  background-color: #4E71F8;
-  color: white;
-  border: none;
-  padding: 10px 50px 10px 50px;
-}
-
-.addressform {
-  z-index: 1;
-  position: absolute;
-  top: 200px;
-}
-
-.map {
-  position: relative;
-  padding: 0;
-}
-
 .nav {
-  background-color: #3C52C9;
+  background-color: whitesmoke;
+  z-index: 100;
   height: 60px;
   text-align: left;
   color: white;
 }
-
+.breadcrumb {
+  border-radius: 0;
+}
+.breadcrumb > li + li:before {
+   color: #CCCCCC;
+   content: "/ ";
+   padding: 0 5px;
+}
 .textInput {
   margin-bottom: 5px;
   border: none;
   -webkit-box-shadow: 1px 4px 9px 0px rgba(69,68,69,0.84);
   -moz-box-shadow: 1px 4px 9px 0px rgba(69,68,69,0.84);
   box-shadow: 1px 4px 9px 0px rgba(69,68,69,0.84);
-}
-
-.patient Button {
-  margin-top: 20px;
-  background-color: #4E71F8;
-  color: white;
-  border: none;
-  padding: 10px 50px 10px 50px;
-}
-
-.optionButtons {
-  border: 1px solid #C1C7CF;
-  background-color: #F5F7F8;
-  color: #7C8E9A;
-  border-radius: 3px;
-}
-
-.cart {
-  background-color: #4E71F8;
-  color: white;
-}
-
-.cartTable table {
-  padding-left: 500px;
-}
-
-.cartTable td {
-  padding-right: 100px;
-}
-
-.cartTable th {
-  padding-right: 100px;
-}
-
-.min-cart {
-  background-color: #4E71F8;
 }
 
 .col-xs-3 {
@@ -98,14 +41,6 @@ body {
 .col-xs-9 {
   padding-left: 0;
   padding-bottom: 0;
-}
-
-.ic-tokeninput {
-  display: inline-block;
-}
-
-.ic-tokeninput {
-  display: inline-block;
 }
 
 li {
@@ -124,10 +59,167 @@ a {
   text-decoration: none;
 }
 
+.btn:hover {
+  background-color: #0073bb;
+}
+
+
+
+/* map */
+.map {
+  position: relative;
+  padding: 0;
+}
+.geocoding-results {
+  text-align: left;
+}
+.autocomplete {
+  z-index: 1;
+  position: absolute;
+  right:500px;
+  background-color: white;
+  -webkit-box-shadow: 1px 3px 2px 2px rgba(92,90,92,0.6);
+  -moz-box-shadow: 1px 3px 2px 2px rgba(92,90,92,0.6);
+  box-shadow: 1px 3px 2px 2px rgba(92,90,92,0.6);
+}
+.addressform {
+  padding-top: 50px;
+}
+.address {
+  background-color: white;
+}
+
+
+/* Patient Details */
+.patient {
+  height: 100%;
+}
+
+/* Order */
+.order Button {
+  margin-top: 20px;
+  background-color: #0073bb;
+  color: white;
+  border: none;
+  padding: 10px 50px 10px 50px;
+}
+
+
+
+/* search and cart */
+.cart {
+  padding-top: 100px;
+  background-color: #0073bb;
+  color: white;
+  height: 100%;
+}
+.btn {
+  background-color: white;
+}
+.search {
+  background-color: #0073bb;
+  color: white;
+  height: 100%;
+}
 .table th {
   text-align: center;
 }
+.cartTable table {
+  padding-left: 500px;
+}
+.cartTable td {
+  padding-right: 100px;
+}
+.cartTable th {
+  padding-right: 100px;
+}
+.min-cart {
+  background-color: #0073bb;
+}
+.optionButtons {
+  border: 1px solid #C1C7CF;
+  background-color: #F5F7F8;
+  color: #7C8E9A;
+  border-radius: 3px;
+  padding: 5px 10px 5px 10px;
+  margin-top: 25px;
+}
 
+/* breadcrumbs */
+/** The Magic **/
+.btn-breadcrumb .btn:not(:last-child):after {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 10px solid transparent;
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  left: 100%;
+  z-index: 3;
+}
+.btn-breadcrumb .btn:not(:last-child):before {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 10px solid rgb(173, 173, 173);
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  margin-left: 1px;
+  left: 100%;
+  z-index: 3;
+}
+
+/** The Spacing **/
+.btn-breadcrumb .btn {
+  padding:6px 12px 6px 24px;
+}
+.btn-breadcrumb .btn:first-child {
+  padding:6px 6px 6px 10px;
+}
+.btn-breadcrumb .btn:last-child {
+  padding:6px 18px 6px 24px;
+}
+
+/** Default button **/
+.btn-breadcrumb .btn.btn-default:not(:last-child):after {
+  border-left: 10px solid #fff;
+}
+.btn-breadcrumb .btn.btn-default:not(:last-child):before {
+  border-left: 10px solid #ccc;
+}
+.btn-breadcrumb .btn.btn-default:hover:not(:last-child):after {
+  border-left: 10px solid #ebebeb;
+}
+.btn-breadcrumb .btn.btn-default:hover:not(:last-child):before {
+  border-left: 10px solid #adadad;
+}
+
+
+
+/* search */
+.ic-tokeninput {
+  display: inline-block;
+  /* 2009 */
+  display: -webkit-inline-box;
+  display: -moz-inline-box;
+
+  /* 2011 */
+  display: -moz-inline-flexbox;
+  display: -ms-inline-flexbox;
+  display: -o-inline-flexbox;
+
+  /* 2012 */
+  display: -webkit-inline-flex;
+  display: inline-flex;
+}
 .ic-tokeninput-list {
   display: none;
   position: absolute;
@@ -146,17 +238,14 @@ a {
   -ms-box-sizing: border-box;
   box-sizing: border-box;
 }
-
 .ic-tokeninput-is-open .ic-tokeninput-list {
   display: block;
 }
-
 .ic-tokeninput-option:focus {
   outline: 0;
   color: white;
   background: hsl(200, 50%, 50%);
 }
-
 .ic-tokeninput-input {
   padding-right: 20px;
   width: 100%;
@@ -169,39 +258,22 @@ a {
   margin-bottom: 6px;
   background-color: transparent;
 }
-
 .ic-token-label {
   line-height: 20px;
 }
-
-.ic-tokeninput-button {
-  display: inline-block;
-  position: absolute;
-  cursor: default;
-  outline: none;
-  top: 2px;
-  right: 6px;
-  border: none;
-  font-size: 8px;
-  cursor: default;
-}
-
 .ic-tokeninput-button:active {
   color: #4095BF;
 }
-
 .ic-tokeninput-option {
   display: block;
   padding: 2px 16px;
   cursor: default;
 }
-
 .ic-tokeninput-selected:before {
   content: '✓';
   position: absolute;
   left: 4px;
 }
-
 .flex {
   /* 2009 */
   display: -webkit-box;
@@ -218,7 +290,6 @@ a {
   display: -webkit-flex;
   display: flex;
 }
-
 .inline-flex {
   /* 2009 */
   display: -webkit-inline-box;
@@ -233,7 +304,6 @@ a {
   display: -webkit-inline-flex;
   display: inline-flex;
 }
-
 .ic-tokens {
   box-sizing: border-box;
   position: relative;
@@ -242,7 +312,7 @@ a {
   padding: 6px 6px;
   border: 1px solid #A6A6A6;
   background-color: white;
-  border-radius: 3px;
+  border-radius: 1px;
   cursor: text;
   position: relative;
   will-change: transform;
@@ -251,7 +321,6 @@ a {
   margin: 0;
   color: black;
 }
-
 .ic-tokens-disabled {
   border: 1px solid #CCCCCC;
   background-color: #eee;
@@ -283,23 +352,17 @@ a {
   background-color: #ddd;
 }
 
-.ic-tokeninput {
-  /* 2009 */
-  display: -webkit-inline-box;
-  display: -moz-inline-box;
-
-  /* 2011 */
-  display: -moz-inline-flexbox;
-  display: -ms-inline-flexbox;
-  display: -o-inline-flexbox;
-
-  /* 2012 */
-  display: -webkit-inline-flex;
-  display: inline-flex;
-}
-
 .ic-tokeninput-button {
   display: none;
+  display: inline-block;
+  position: absolute;
+  cursor: default;
+  outline: none;
+  top: 2px;
+  right: 6px;
+  border: none;
+  font-size: 8px;
+  cursor: default;
 }
 
 .ic-tokeninput-loading {
@@ -308,11 +371,6 @@ a {
   right: 2px;
   align-items: center;
   padding-right: 6px;
-}
-
-.btn:hover {
-  background-color: #e53935;
-  border-color: #e53935;
 }
 
 .fa.fa-map-marker.suggestion {
@@ -354,9 +412,6 @@ a {
   }
 }
 
-.geocoding-results {
-  text-align: left;
-}
 
 @keyframes fadein {
   from { opacity: 0; }

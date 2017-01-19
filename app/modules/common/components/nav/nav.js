@@ -1,10 +1,10 @@
 import React from 'react';
-import Links from './links';
+import Logo from '../assets/logo';
 
 export default (props) => {
-  return(
+  return (
     <div className="nav">
-    theSmartLabs
+      <Logo />
     </div>
   );
 };

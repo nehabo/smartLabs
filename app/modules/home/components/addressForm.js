@@ -1,6 +1,5 @@
 import React from 'react';
 import Formsy from 'formsy-react';
-import { Link } from 'react-router';
 import Text from '../../common/components/input/text';
 import Button from '../../common/components/input/button';
 
@@ -59,7 +58,7 @@ class AddressForm extends React.Component {
           value={this.props._state}
           readOnly
         />
-        <Link to="order"><Button type="submit">Confirm Location</Button></Link>
+        <Button type="submit">Confirm</Button>
       </Formsy.Form>
     );
   }

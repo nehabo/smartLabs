@@ -18,7 +18,7 @@ class Text extends React.Component {
     return (
       <div>
         <input
-          className="textInput"
+          className="textInput form-control"
           value={this.props.getValue()}
           type={this.props.type}
           placeholder={this.props.placeholder}

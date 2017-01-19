@@ -1,27 +1,10 @@
 import React from 'react';
 import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete';
-import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
+import { Link, browserHistory } from 'react-router';
+import Map from './map';
 import AddressForm from './addressForm';
 import LocateMe from './geolocator';
-
-require('../styles.css');
-
-const PopUpMap = withGoogleMap(
-    props => (
-    <GoogleMap
-      ref={props.onMapLoad}
-      defaultZoom={16}
-      center={props.location}
-      onClick={props.onMapClick}
-    >
-      {props.markers.map(marker => (
-      <Marker
-        {...marker}
-      />
-      ))}
-    </GoogleMap>
-  ),
-);
+import Nav from '../../common/components/nav/nav';
 
 class Address extends React.Component {
   constructor(props) {
@@ -50,7 +33,6 @@ class Address extends React.Component {
       this.props.handlePostalInput(pincode);
     };
 
-    this.handleMapLoad = this.handleMapLoad.bind(this);
     this.onAutoSuggestSubmit = this.onAutoSuggestSubmit.bind(this);
     this.onSelect = this.onSelect.bind(this);
     this.handleOnLocate = this.handleOnLocate.bind(this);
@@ -58,17 +40,13 @@ class Address extends React.Component {
     this.geocodeSuccess = this.geocodeSuccess.bind(this);
     this.reverseGeocodeSuccess = this.reverseGeocodeSuccess.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleMapClick = this.handleMapClick.bind(this);
   }
-
-  handleMapLoad(map) {
-    this._mapComponent = map;
-  }
-
-  handleMapClick(event) {
-    console.log(event.latLng.lat());
+  handleMapClick(latLng) {
+    console.log(latLng.lat());
     const nextMarkers = [
       {
-        position: event.latLng,
+        position: latLng,
         defaultAnimation: 2,
         key: Date.now(), // Add a key property for: http://fb.me/react-warning-keys
       },
@@ -77,7 +55,7 @@ class Address extends React.Component {
 
     // to get address
     const geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ 'location': event.latLng }, (results, status) => {
+    geocoder.geocode({ 'location': latLng }, (results, status) => {
       if (status === 'OK') {
         if (results[0]) {
           console.log(results[0].formatted_address);
@@ -177,13 +155,10 @@ class Address extends React.Component {
   }
 
   handleFormSubmit(values) {
+    browserHistory.push('order');
     const step = this.state.step;
     this.props.handleFormSubmit(values);
     this.props.onSubmit(step);
-  }
-
-  handleClick(value) {
-    this.props.handleInputChange(value);
   }
 
   render() {
@@ -191,46 +166,48 @@ class Address extends React.Component {
     (<div><i className="fa fa-map-marker suggestion" />{suggestion}</div>);
 
     return (
-      <div>
-        <div className="autocomplete">
-          <PlacesAutocomplete
-            value={this.props.address}
-            onChange={this.onChange}
-            onSelect={this.onSelect}
-            location={this.props.location}
-            autocompleteItem={AutocompleteItem}
-          />
-          <LocateMe
-            onClick={this.handleOnLocate}
-          />
-        </div>
-          <div className="map" style={{ height: '300px', width: '1000px' }}>
-            <PopUpMap
-              containerElement={
-                <div style={{ height: '300px', width: '1000px', align: 'center' }} />
-              }
-              mapElement={
-                <div style={{ height: '300px', width: '980px', align: 'center' }} />
-              }
-              onMapLoad={this.handleMapLoad}
+      <div className="address">
+        <Nav />
+        <ol className="breadcrumb">
+          <li><Link to="search">Cart</Link></li>
+          <li><Link to="patient">Patient</Link></li>
+          <li className="active">Address</li>
+        </ol>
+        <div className="container">
+          <div className="page-header">
+            <h3>Address Details</h3>
+          </div>
+          <div className="autocomplete">
+            <PlacesAutocomplete
+              value={this.props.address}
+              onChange={this.onChange}
+              onSelect={this.onSelect}
               location={this.props.location}
-              onMapClick={event => this.handleMapClick(event)}
-              markers={this.props.markers}
+              autocompleteItem={AutocompleteItem}
+            />
+            <LocateMe
+              onClick={this.handleOnLocate}
             />
           </div>
-          <div className="addressform">
-            <AddressForm
-              streetAddress={this.props.streetAddress}
-              locality={this.props.locality}
-              city={this.props.city}
-              district={this.props.district}
-              _state={this.props._state}
-              postalCode={this.props.postalCode}
-              handleInputStreet={this.handleStreetInput}
-              handleInputLocality={this.handleLocalityInput}
-              handleInputPostal={this.handlePostalInput}
-              onSubmit={this.handleFormSubmit}
+            <Map
+              location={this.props.location}
+              markers={this.props.markers}
+              onMapClick={this.handleMapClick}
             />
+            <div className="addressform">
+              <AddressForm
+                streetAddress={this.props.streetAddress}
+                locality={this.props.locality}
+                city={this.props.city}
+                district={this.props.district}
+                _state={this.props._state}
+                postalCode={this.props.postalCode}
+                handleInputStreet={this.handleStreetInput}
+                handleInputLocality={this.handleLocalityInput}
+                handleInputPostal={this.handlePostalInput}
+                onSubmit={this.handleFormSubmit}
+              />
+            </div>
           </div>
       </div>
     );

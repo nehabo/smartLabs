@@ -1,11 +1,10 @@
 import React from 'react';
 import TokenInput, { Option } from 'react-tokeninput';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import _ from 'lodash';
 import Cart from './cart';
 import Options from './options';
-
-require('../styles.css');
+import Nav from '../../common/components/nav/nav';
 
 class Search extends React.Component {
   constructor(props) {
@@ -16,9 +15,10 @@ class Search extends React.Component {
     };
   }
 
-  onClick(event) {
+  onClick() {
     const step = this.state.step;
     this.props.onSearch(step);
+    browserHistory.push('patient');
   }
 
   renderComboboxOptions() {
@@ -37,18 +37,32 @@ class Search extends React.Component {
       this.renderComboboxOptions() : [];
 
     return (
-      <div className={this.state.className}>
-        <TokenInput
-          menuContent={options}
-          onInput={this.props.handleInput}
-          onSelect={this.props.handleSelect}
-          onRemove={this.props.handleRemove}
-          selected={this.props.selected}
-          placeholder="Add tests"
-        />
-        <Options handleSelect={this.props.handleSelect} options={this.props.options || []} />
-        <Cart selected={this.props.selected} />
-        <button onClick={this.onClick}>Purchase</button>
+      <div className="search">
+        <Nav />
+        <ol className="breadcrumb">
+          <li className="active">Cart</li>
+        </ol>
+        <div className="container">
+          <div className="row">
+            <TokenInput
+              menuContent={options}
+              onInput={this.props.handleInput}
+              onSelect={this.props.handleSelect}
+              onRemove={this.props.handleRemove}
+              selected={this.props.selected}
+              placeholder="Add tests"
+            />
+          </div>
+          <div className="row">
+            <Options handleSelect={this.props.handleSelect} options={this.props.options || []} />
+          </div>
+          <div className="row">
+            <Cart selected={this.props.selected} />
+          </div>
+          <div className="row">
+            <button className="btn" onClick={this.onClick}>Purchase</button>
+          </div>
+        </div>
       </div>
     );
   }
@@ -58,7 +72,7 @@ Search.propTypes = {
   handleInput: React.PropTypes.func,
   handleSelect: React.PropTypes.func,
   handleRemove: React.PropTypes.func,
-  selected: React.PropTypes.func,
+  selected: React.PropTypes.Array,
   options: React.PropTypes.func,
 };
 
