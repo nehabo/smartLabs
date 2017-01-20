@@ -13,7 +13,6 @@ class Address extends React.Component {
       geocodeResults: null,
       loading: false,
       reverseGeocodeResults: null,
-      step: 4,
     };
 
     this.onChange = address => {
@@ -156,9 +155,7 @@ class Address extends React.Component {
 
   handleFormSubmit(values) {
     browserHistory.push('order');
-    const step = this.state.step;
     this.props.handleFormSubmit(values);
-    this.props.onSubmit(step);
   }
 
   render() {
@@ -166,13 +163,14 @@ class Address extends React.Component {
     (<div><i className="fa fa-map-marker suggestion" />{suggestion}</div>);
 
     return (
-      <div className="address">
+      <div>
         <Nav />
-        <ol className="breadcrumb">
-          <li><Link to="search">Cart</Link></li>
-          <li><Link to="patient">Patient</Link></li>
-          <li className="active">Address</li>
-        </ol>
+        <div className="btn-group btn-breadcrumb">
+          <li className="btn btn-default"><i className="glyphicon glyphicon-home"></i>
+            <Link to="search">Home</Link></li>
+          <li className="btn btn-default"><Link to="patient">Patient</Link></li>
+          <li className="btn btn-default">Address</li>
+        </div>
         <div className="container">
           <div className="page-header">
             <h3>Address Details</h3>

@@ -1,13 +1,14 @@
 const defaultState = {
-  step: 1,
+  page: 'search',
 };
 
 const homeReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case 'HANDLE_PATIENTSUBMIT':
-      console.log(action.values);
+    case 'ON_NEXTPAGE':
+      console.log(action.pathname);
       return {
-        state: action.values,
+        ...state,
+        page: action.pathname,
       };
       break;
 
@@ -15,4 +16,5 @@ const homeReducer = (state = defaultState, action) => {
       return state;
   }
 };
+
 export default homeReducer;

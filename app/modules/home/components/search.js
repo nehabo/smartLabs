@@ -1,6 +1,6 @@
 import React from 'react';
 import TokenInput, { Option } from 'react-tokeninput';
-import { Link, browserHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import _ from 'lodash';
 import Cart from './cart';
 import Options from './options';
@@ -10,14 +10,9 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
     this.onClick = this.onClick.bind(this);
-    this.state = {
-      step: 2,
-    };
   }
 
   onClick() {
-    const step = this.state.step;
-    this.props.onSearch(step);
     browserHistory.push('patient');
   }
 
@@ -39,9 +34,6 @@ class Search extends React.Component {
     return (
       <div className="search">
         <Nav />
-        <ol className="breadcrumb">
-          <li className="active">Cart</li>
-        </ol>
         <div className="container">
           <div className="row">
             <TokenInput

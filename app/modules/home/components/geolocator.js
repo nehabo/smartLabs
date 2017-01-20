@@ -1,6 +1,5 @@
 import React from 'react';
 import { geolocated } from 'react-geolocated';
-import Button from '../../common/components/input/button';
 
 class LocateMe extends React.Component {
 

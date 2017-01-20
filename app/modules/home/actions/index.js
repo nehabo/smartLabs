@@ -85,3 +85,9 @@ export const handlePatientSubmit = values => ({
   type: 'HANDLE_PATIENTSUBMIT',
   values,
 });
+
+// for persistant routing
+export const onNextPage = pathname => ({
+  type: 'ON_NEXTPAGE',
+  pathname,
+});

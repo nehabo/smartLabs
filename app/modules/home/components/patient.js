@@ -7,26 +7,24 @@ class Patient extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.state = {
-      step: 3,
-    };
   }
 
   handleSubmit(values) {
     browserHistory.push('address');
-    const step = this.state.step;
     this.props.handlePatientSubmit(values);
-    this.props.onSubmit(step);
   }
 
   render() {
     return(
       <div className="patient">
         <Nav />
-        <ol className="breadcrumb">
-          <li><Link to="search">Cart</Link></li>
-          <li className="active">Patient</li>
-        </ol>
+        <div className="btn-group btn-breadcrumb">
+          <li className="btn btn-default">
+            <i className="glyphicon glyphicon-home" />
+            <Link to="search">Home</Link>
+          </li>
+          <li className="btn btn-default">Patient</li>
+        </div>
         <div className="container">
           <div className="page-header">
             <h3>Patient Details Form</h3>

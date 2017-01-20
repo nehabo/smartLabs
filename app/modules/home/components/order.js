@@ -9,7 +9,10 @@ class Order extends React.Component {
       <div>
         <Nav />
         <div className="btn-group btn-breadcrumb">
-          <li className="btn btn-default"><i className="glyphicon glyphicon-home"></i><Link to="search">Cart</Link></li>
+          <li className="btn btn-default">
+            <i className="glyphicon glyphicon-home" />
+            <Link to="search">Home</Link>
+          </li>
           <li className="btn btn-default"><Link to="patient">Patient</Link></li>
           <li className="btn btn btn-default"><Link to="address">Address</Link></li>
           <li className="btn btn-default">Order</li>
