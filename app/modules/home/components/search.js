@@ -4,7 +4,6 @@ import { browserHistory } from 'react-router';
 import _ from 'lodash';
 import Cart from './cart';
 import Options from './options';
-import Nav from '../../common/components/nav/nav';
 
 class Search extends React.Component {
   constructor(props) {
@@ -33,7 +32,6 @@ class Search extends React.Component {
 
     return (
       <div className="search">
-        <Nav />
         <div className="container">
           <div className="row">
             <TokenInput
@@ -49,7 +47,7 @@ class Search extends React.Component {
             <Options handleSelect={this.props.handleSelect} options={this.props.options || []} />
           </div>
         </div>
-        <div className="container cart">
+        <div className="container">
           <div className="row">
             <Cart selected={this.props.selected} />
           </div>

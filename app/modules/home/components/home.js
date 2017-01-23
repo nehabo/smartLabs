@@ -1,11 +1,5 @@
 import React from 'react';
-import { Router, Route, browserHistory, IndexRedirect } from 'react-router';
-import Search from '../containers/search';
-import Address from '../containers/address';
-import Patient from '../containers/patient';
-import Order from '../containers/order';
-import Home from '../containers/home';
-import Main from '../../../main';
+import Nav from '../../../modules/common/components/nav/nav';
 
 class App extends React.Component {
   constructor(props) {
@@ -19,6 +13,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <Nav />
         {this.props.children}
       </div>
     );

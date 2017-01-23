@@ -4,7 +4,6 @@ import { Link, browserHistory } from 'react-router';
 import Map from './map';
 import AddressForm from './addressForm';
 import LocateMe from './geolocator';
-import Nav from '../../common/components/nav/nav';
 
 class Address extends React.Component {
   constructor(props) {
@@ -161,12 +160,19 @@ class Address extends React.Component {
   render() {
     const AutocompleteItem = ({ suggestion }) =>
     (<div><i className="fa fa-map-marker suggestion" />{suggestion}</div>);
-
+    const autocompleteStyles = {
+      label: { color: '#0073bb' },
+      input: { width: '75%' },
+      autocompleteItem: { color: '#e02e61' },
+      autocompleteItemActive: { color: '#0073bb' },
+    };
+    const options = {
+      componentRestrictions: { country: 'in' },
+    };
     return (
       <div>
-        <Nav />
         <div className="btn-group btn-breadcrumb">
-          <li className="btn btn-default"><i className="glyphicon glyphicon-home"></i>
+          <li className="btn btn-default"><i className="fa fa-home"></i>
             <Link to="search">Home</Link></li>
           <li className="btn btn-default"><Link to="patient">Patient</Link></li>
           <li className="btn btn-default">Address</li>
@@ -175,12 +181,15 @@ class Address extends React.Component {
           <div className="page-header">
             <h3>Address Details</h3>
           </div>
-          <div className="autocomplete">
+          <div className="row autocomplete">
             <PlacesAutocomplete
+              styles={autocompleteStyles}
+              hideLabel="true"
               value={this.props.address}
               onChange={this.onChange}
               onSelect={this.onSelect}
               location={this.props.location}
+              options={options}
               autocompleteItem={AutocompleteItem}
             />
             <LocateMe

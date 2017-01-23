@@ -18,6 +18,9 @@ body {
   text-align: left;
   color: white;
 }
+.navbar {
+  margin: 0 auto;
+}
 .breadcrumb {
   border-radius: 0;
 }
@@ -63,7 +66,7 @@ a {
   background-color: #0073bb;
 }
 input[type="radio"]:checked ~ label {
-  color: #0073bb;
+  box-shadow: 1px 1px 5px 1px rgba(69, 68, 69, 0.59);
 }
 input[type="radio"] {
   display: none;
@@ -73,14 +76,18 @@ input[type="radio"] {
   padding: 10px;
   font-size: 20px;
 	font-family: FontAwesome;
+  color: #0073bb;
 }
 .radio.female ~label:before {
   content: "\f182";
+  padding: 10px;
   font-size: 20px;
 	font-family: FontAwesome;
+  color: #e02e61;
 }
 .radio.cash ~label:before {
   content: "\f0d6";
+  padding: 10px;
   font-size: 20px;
 	font-family: FontAwesome;
 }
@@ -96,6 +103,16 @@ input[type="radio"] {
 .logo {
   padding-top: 10px;
 }
+.btn.submit {
+  background-color: #0073bb;
+  color: white;
+}
+.btn.submit:hover {
+  background-color: transparent;;
+  border: 2px solid rgb(0, 115, 187);
+  color: rgb(0, 115, 187);
+  transition: 0.1s;
+}
 
 
 
@@ -110,7 +127,10 @@ input[type="radio"] {
 .autocomplete {
   z-index: 1;
   position: absolute;
-  right:500px;
+  padding: 20px 10px 10px 10px;
+  width: 500px;
+  top: 225px;
+  right: 300px;
   background-color: white;
   -webkit-box-shadow: 1px 3px 2px 2px rgba(92,90,92,0.6);
   -moz-box-shadow: 1px 3px 2px 2px rgba(92,90,92,0.6);
@@ -123,6 +143,11 @@ input[type="radio"] {
 .address {
   background-color: white;
 }
+.fa.fa-location-arrow {
+  padding-right: 10px;
+}
+
+
 
 
 /* Patient Details */
@@ -156,12 +181,12 @@ input[type="radio"] {
   color: white;
   height: 100%;
 }
-.btn {
-    background-color: transparent;
-    border: 2px solid white;
-    transition: 0.4s;
+.purchase.btn {
+  background-color: transparent;
+  border: 2px solid white;
+  transition: 0.4s;
 }
-.btn:hover {
+.purchase.btn:hover {
   color: rgb(0, 115, 187);
   background-color: white;
 }
@@ -173,17 +198,14 @@ input[type="radio"] {
 .table th {
   text-align: center;
 }
-.cartTable table {
+.cart table {
   padding-left: 500px;
 }
-.cartTable td {
+.cart td {
   padding-right: 100px;
 }
-.cartTable th {
+.cart th {
   padding-right: 100px;
-}
-.min-cart {
-  background-color: #0073bb;
 }
 .optionButtons {
   border: 1px solid #C1C7CF;
@@ -200,8 +222,12 @@ input[type="radio"] {
 }
 
 
+
+
 /* breadcrumbs */
-/** The Magic **/
+.fa.fa-home {
+  padding-right: 10px;
+}
 .btn-breadcrumb .btn:not(:last-child):after {
   content: " ";
   display: block;
@@ -209,12 +235,15 @@ input[type="radio"] {
   height: 0;
   border-top: 17px solid transparent;
   border-bottom: 17px solid transparent;
-  border-left: 10px solid transparent;
+  border-left: 10px solid white;
   position: absolute;
   top: 50%;
   margin-top: -17px;
   left: 100%;
   z-index: 3;
+}
+.btn-breadcrumb .btn:not(:last-child):hover:after {
+  border-left: 10px solid #0073bb;
 }
 .btn-breadcrumb .btn:not(:last-child):before {
   content: " ";
@@ -231,7 +260,6 @@ input[type="radio"] {
   left: 100%;
   z-index: 3;
 }
-
 /** The Spacing **/
 .btn-breadcrumb .btn {
   padding:6px 12px 6px 24px;
@@ -242,20 +270,26 @@ input[type="radio"] {
 .btn-breadcrumb .btn:last-child {
   padding:6px 18px 6px 24px;
 }
+.btn-breadcrumb .btn:last-child:hover {
+  color: white;
+}
+.btn-breadcrumb .btn:not(:last-child):hover {
+  color: white;
+}
+/** Primary button **/
+.btn-breadcrumb .btn.btn-primary:not(:last-child):after {
+  border-left: 10px solid #0073bb;
+}
+.btn-breadcrumb .btn.btn-primary:not(:last-child):before {
+  border-left: 10px solid #357ebd;
+}
+.btn-breadcrumb .btn.btn-primary:hover:not(:last-child):after {
+  border-left: 10px solid #0073bb;
+}
+.btn-breadcrumb .btn.btn-primary:hover:not(:last-child):before {
+  border-left: 10px solid #285e8e;
+}
 
-/** Default button **/
-.btn-breadcrumb .btn.btn-default:not(:last-child):after {
-  border-left: 10px solid #fff;
-}
-.btn-breadcrumb .btn.btn-default:not(:last-child):before {
-  border-left: 10px solid #ccc;
-}
-.btn-breadcrumb .btn.btn-default:hover:not(:last-child):after {
-  border-left: 10px solid #ebebeb;
-}
-.btn-breadcrumb .btn.btn-default:hover:not(:last-child):before {
-  border-left: 10px solid #adadad;
-}
 
 
 
@@ -373,7 +407,7 @@ input[type="radio"] {
   will-change: transform;
   flex-wrap: wrap;
   min-height: 41px;
-  margin: 0;
+  margin-top: 50px;
   color: black;
 }
 .ic-tokens-disabled {
@@ -385,7 +419,6 @@ input[type="radio"] {
   -webkit-box-shadow: inset 0 0 6px #ddd;
   box-shadow:         inset 0 0 6px #ddd;
 }
-
 .ic-token {
   background-color: #F5F7F8;
   border: 1px solid #C1C7CF;
@@ -396,17 +429,14 @@ input[type="radio"] {
   margin-top: 2px;
   margin-bottom: 2px;
 }
-
 .ic-token-delete-button {
   font-size: 1rem;
   margin-right: 5px;
   cursor: pointer;
 }
-
 .ic-token-delete-button:hover {
   background-color: #ddd;
 }
-
 .ic-tokeninput-button {
   display: none;
   display: inline-block;
@@ -416,10 +446,9 @@ input[type="radio"] {
   top: 2px;
   right: 6px;
   border: none;
-  font-size: 8px;
+  font-size: 18px;
   cursor: default;
 }
-
 .ic-tokeninput-loading {
   position: absolute;
   bottom: 9px;
@@ -427,21 +456,17 @@ input[type="radio"] {
   align-items: center;
   padding-right: 6px;
 }
-
 .fa.fa-map-marker.suggestion {
   margin-right: 5px;
 }
-
 .fa.fa-map-marker.header {
   color: #e53935;
 }
-
 @media (max-width: 880px) {
   .autocomplete-container {
     text-align: left;
   }
 }
-
 @media (min-width: 768px) {
   .alert {
     margin-left: auto;

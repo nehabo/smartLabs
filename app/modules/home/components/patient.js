@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
-import Nav from '../../common/components/nav/nav';
 import PatientForm from './patientForm';
 
 class Patient extends React.Component {
@@ -17,10 +16,9 @@ class Patient extends React.Component {
   render() {
     return(
       <div className="patient">
-        <Nav />
         <div className="btn-group btn-breadcrumb">
           <li className="btn btn-default">
-            <i className="glyphicon glyphicon-home" />
+            <i className="fa fa-home" />
             <Link to="search">Home</Link>
           </li>
           <li className="btn btn-default">Patient</li>

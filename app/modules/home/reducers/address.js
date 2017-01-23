@@ -22,7 +22,7 @@ const defaultState = {
   _state: '',
 };
 
-const cartReducer = (state = defaultState, action) => {
+const addressReducer = (state = defaultState, action) => {
   switch (action.type) {
     case 'ON_LOCATE':
       const latitude = action.coords.latitude;
@@ -58,13 +58,11 @@ const cartReducer = (state = defaultState, action) => {
       break;
 
     case 'ON_GEOCODESUCCESS':
-      const lat = action.lat;
-      const lng = action.lng;
       return {
         ...state,
         location: {
-          lat,
-          lng,
+          lat: action.lat,
+          lng: action.lng,
         },
         markers: [{
           position: {
@@ -82,6 +80,7 @@ const cartReducer = (state = defaultState, action) => {
       let city = '';
       let district = '';
       let _state = '';
+      const address = action.results[1].formatted_address;
       console.log(action.results);
       _.map(action.results, (Object) => {
         console.log(Object.types);
@@ -116,6 +115,7 @@ const cartReducer = (state = defaultState, action) => {
       });
       return {
         ...state,
+        address,
         streetAddress,
         locality,
         district,
@@ -171,4 +171,4 @@ const cartReducer = (state = defaultState, action) => {
       return state;
   }
 };
-export default cartReducer;
+export default addressReducer;

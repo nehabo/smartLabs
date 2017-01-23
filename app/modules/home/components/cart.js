@@ -1,13 +1,12 @@
 import React from 'react';
 import _ from 'lodash';
-import Button from '../../common/components/input/button';
 
 export default (props) => {
   let cost = 0;
   return (
     <div>
       <h2>Diagnostics Selected</h2>
-      <table className="table">
+      <table className="table cart">
         <thead>
           <tr>
             <th>Test</th>
