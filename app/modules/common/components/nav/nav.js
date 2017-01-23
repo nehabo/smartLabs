@@ -4,7 +4,8 @@ import Logo from '../assets/logo';
 
 export default (props) => {
   return (
-    <div className="nav">
+    <div className="nav navbar">
+
       <Link to="search">
         <Logo />
       </Link>

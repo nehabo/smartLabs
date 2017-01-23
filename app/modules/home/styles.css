@@ -29,9 +29,9 @@ body {
 .textInput {
   margin-bottom: 5px;
   border: none;
-  -webkit-box-shadow: 1px 4px 9px 0px rgba(69,68,69,0.84);
-  -moz-box-shadow: 1px 4px 9px 0px rgba(69,68,69,0.84);
-  box-shadow: 1px 4px 9px 0px rgba(69,68,69,0.84);
+  webkit-box-shadow: 1px 1px 5px 0px rgba(69, 68, 69, 0.59);
+  moz-box-shadow: 1px 1px 5px 0px rgba(69, 68, 69, 0.59);
+  box-shadow: 1px 1px 5px 0px rgba(69, 68, 69, 0.59);
 }
 
 .col-xs-3 {
@@ -62,6 +62,40 @@ a {
 .btn:hover {
   background-color: #0073bb;
 }
+input[type="radio"]:checked ~ label {
+  color: #0073bb;
+}
+input[type="radio"] {
+  display: none;
+}
+.radio.male ~label:before {
+  content: "\f183";
+  padding: 10px;
+  font-size: 20px;
+	font-family: FontAwesome;
+}
+.radio.female ~label:before {
+  content: "\f182";
+  font-size: 20px;
+	font-family: FontAwesome;
+}
+.radio.cash ~label:before {
+  content: "\f0d6";
+  font-size: 20px;
+	font-family: FontAwesome;
+}
+.radio.card ~label:before {
+  content: "\f09d";
+  padding: 10px;
+  font-size: 20px;
+	font-family: FontAwesome;
+}
+.radio-container {
+  display: inline-block;
+}
+.logo {
+  padding-top: 10px;
+}
 
 
 
@@ -84,6 +118,7 @@ a {
 }
 .addressform {
   padding-top: 50px;
+  margin: 0 auto;
 }
 .address {
   background-color: white;
@@ -95,7 +130,15 @@ a {
   height: 100%;
 }
 
+.patient-form {
+  max-width: 450px;
+  margin: 0 auto;
+}
+
 /* Order */
+.order {
+  margin: 0 auto;
+}
 .order Button {
   margin-top: 20px;
   background-color: #0073bb;
@@ -114,6 +157,12 @@ a {
   height: 100%;
 }
 .btn {
+    background-color: transparent;
+    border: 2px solid white;
+    transition: 0.4s;
+}
+.btn:hover {
+  color: rgb(0, 115, 187);
   background-color: white;
 }
 .search {
@@ -144,6 +193,12 @@ a {
   padding: 5px 10px 5px 10px;
   margin-top: 25px;
 }
+.purchase:before {
+  content: "\f07a";
+  font-family: fontAwesome;
+  padding: 10px;
+}
+
 
 /* breadcrumbs */
 /** The Magic **/

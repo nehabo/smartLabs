@@ -18,16 +18,18 @@ class Radio extends React.Component {
     return (
       <div>
         {this.props.options.map(item =>
-          <div>
-            <label htmlFor={item.name}>{item.value}</label>
+          <div className="radio-container">
             <input
+              id={item.name}
+              className={`radio ${item.name}`}
               type="radio"
               value={item.value}
               onChange={this.handleChange}
               name={this.props.name}
               checked={this.props.checked}
             />
-          </div>,
+            <label htmlFor={item.name}></label>
+          </div>
         )}
       </div>
     );

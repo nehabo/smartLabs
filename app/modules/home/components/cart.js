@@ -5,7 +5,7 @@ import Button from '../../common/components/input/button';
 export default (props) => {
   let cost = 0;
   return (
-    <div className="cart">
+    <div>
       <h2>Diagnostics Selected</h2>
       <table className="table">
         <thead>

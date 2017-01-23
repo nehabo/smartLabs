@@ -38,7 +38,7 @@ class OrderForm extends React.Component {
       <Formsy.Form onSubmit={this.props.handlePatientSubmit} className="order">
         <Radio
           options={options}
-          name="gender"
+          name="payment"
           onChange={this.onChange}
         />
         {

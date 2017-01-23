@@ -21,7 +21,7 @@ class PatientForm extends React.Component {
       },
     ]
     return (
-      <Formsy.Form onSubmit={this.props.onSubmit} className="patient-form">
+      <Formsy.Form onSubmit={this.props.onSubmit}>
         <Text
           name="name"
           placeholder="Name"
@@ -31,6 +31,7 @@ class PatientForm extends React.Component {
           name="phone"
           placeholder="Phone Number"
           value={this.props.phone}
+          validations="isNumeric"
         />
         <Date
           name="dob"
@@ -46,6 +47,7 @@ class PatientForm extends React.Component {
           name="email"
           placeholder="Email"
           value={this.props.email}
+          validations="isEmail"
         />
         <Button type="submit">Confirm Details</Button>
       </Formsy.Form>

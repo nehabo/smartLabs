@@ -29,14 +29,16 @@ class Patient extends React.Component {
           <div className="page-header">
             <h3>Patient Details Form</h3>
           </div>
-          <PatientForm
-            onSubmit={this.handleSubmit}
-            name={this.props.name}
-            phone={this.props.phone_no}
-            dob={this.props.dob}
-            gender={this.props.gender}
-            email={this.props.email}
-          />
+          <div className="patient-form">
+            <PatientForm
+              onSubmit={this.handleSubmit}
+              name={this.props.name}
+              phone={this.props.phone_no}
+              dob={this.props.dob}
+              gender={this.props.gender}
+              email={this.props.email}
+            />
+          </div>
         </div>
       </div>
     );

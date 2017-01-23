@@ -48,11 +48,13 @@ class Search extends React.Component {
           <div className="row">
             <Options handleSelect={this.props.handleSelect} options={this.props.options || []} />
           </div>
+        </div>
+        <div className="container cart">
           <div className="row">
             <Cart selected={this.props.selected} />
           </div>
           <div className="row">
-            <button className="btn" onClick={this.onClick}>Purchase</button>
+            <button className="btn purchase" onClick={this.onClick}>Purchase</button>
           </div>
         </div>
       </div>
